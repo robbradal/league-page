@@ -149,7 +149,7 @@
         const url = new URL(window.location.href);
         url.searchParams.set('view', view);
         if(selected) url.searchParams.set('asset', selected); else url.searchParams.delete('asset');
-        window.history.replaceState(window.history.state, '', url);
+        try { window.history.replaceState(window.history.state, '', url); } catch(e) { /* sandboxed frames may refuse */ }
     };
 
     const select = async (key) => {
